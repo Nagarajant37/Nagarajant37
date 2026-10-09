@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="34" viewBox="0 0 1200 34" role="img" aria-labelledby="t d"><title id="t">section divider</title><desc id="d">A thin network line with a data packet travelling across it.</desc><style>
+text{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono','DejaVu Sans Mono',monospace}
+.sans{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Inter,'Helvetica Neue',Arial,sans-serif}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes hold{0%,99%{opacity:0}100%{opacity:1}}
+@keyframes f0{0%,33%{opacity:1}33.1%,100%{opacity:0}}
+@keyframes f1{0%,33%{opacity:0}33.1%,66%{opacity:1}66.1%,100%{opacity:0}}
+@keyframes f2{0%,66%{opacity:0}66.1%,99.9%{opacity:1}100%{opacity:0}}
+.blink{animation:blink 1.05s step-end infinite}
+.pulse{animation:pulse 1.8s ease-in-out infinite}
+
+.pkt{animation:pkt 4.5s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes pkt{0%{transform:translateX(0);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translateX(1060px);opacity:0}}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style><defs><linearGradient id="ln" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#22d3ee" stop-opacity="0"/><stop offset=".5" stop-color="#22d3ee" stop-opacity=".55"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></linearGradient><linearGradient id="pg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#67e8f9" stop-opacity="0"/><stop offset="1" stop-color="#67e8f9"/></linearGradient></defs><rect x="40" y="16.5" width="1120" height="1" fill="url(#ln)"/><g class="pkt"><rect x="40" y="15.5" width="60" height="3" rx="1.5" fill="url(#pg)"/></g><rect x="566.4" y="6" width="67.2" height="22" rx="11" fill="#0d1117" stroke="#30363d"/><text x="578.4" y="21.5" font-size="12" fill="#7d8590" xml:space="preserve" textLength="43.2" lengthAdjust="spacing">0x4E54</text></svg>
