@@ -1,0 +1,43 @@
+# Redraws assets/threat-feed.svg from CISA's Known Exploited Vulnerabilities
+# catalog once a day, and commits it only when the card actually changed.
+name: threat-feed
+
+on:
+  schedule:
+    - cron: "17 1 * * *"   # 01:17 UTC / 06:47 IST, after CISA's US-evening updates
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/threat_feed.py
+      - scripts/build_assets.py
+      - .github/workflows/threat-feed.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: threat-feed
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Render CISA KEV threat feed
+        run: python3 scripts/threat_feed.py
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- assets/threat-feed.svg; then
+            echo "Threat feed unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/threat-feed.svg
+          git commit -m "chore(feed): refresh CISA KEV threat feed"
+          git push
